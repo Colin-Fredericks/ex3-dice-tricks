@@ -1,0 +1,79 @@
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+h1 {
+    color: #b80;
+    font-variant: small-caps;
+    margin: 0px 0px 8px 0px;
+}
+
+h2, h3 {
+    font-variant: small-caps;
+    margin: 4px 0px 4px 0px;
+    display: inline-block;
+}
+
+p {
+    margin: 4px;
+}
+
+div {
+    border: 1px solid black;
+    margin: 2px;
+    padding: 2px;
+}
+
+#bigbox {
+    position: relative;
+    display: inline-block;
+}
+
+#leftbox {
+    position: relative;
+    float: left;
+}
+
+#tabs {
+    white-space: nowrap;
+}
+
+#trickAtab, #trickBtab {
+    display: inline-block;
+}
+
+#options {
+
+}
+
+#trickAoptions, #trickBoptions {
+}
+
+#theGraph {
+    float: left;
+}
+
+#successChart {
+
+}
+
+#controls {
+
+}
+
+
+.titletopper {
+    margin: 0px;
+    padding: 0px;
+    color: #b80;
+    font-variant: small-caps;    
+    font-weight: bold;
+}
