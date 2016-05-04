@@ -1,3 +1,4 @@
+// Successes and standard deviations for rolling a single die with particular tricks.
 var tricks = {
     'double10': {
         'label': 'Double 10s',

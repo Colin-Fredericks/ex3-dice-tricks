@@ -69,6 +69,16 @@ div {
 
 }
 
+#trickALabel {
+    border: 2px solid steelblue;
+    color: steelblue;
+}
+
+#trickBLabel {
+    border: 2px solid darkorange;
+    color: darkorange;
+}
+
 
 .titletopper {
     margin: 0px;
