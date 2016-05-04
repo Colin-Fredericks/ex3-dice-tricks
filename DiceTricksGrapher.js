@@ -3,9 +3,11 @@ window.onload = function(){
 
     var diceMax = 25;
     var lineData = {};
+    var maxData = [];
     
     for(var i = 0; i < tricksToPlot.length; i++){
         lineData[tricksToPlot[i]] = [];
+        
         for (var j = 0; j < diceMax; j++){
             lineData[tricksToPlot[i]].push({});
             lineData[tricksToPlot[i]][j].x = j+1;
@@ -13,7 +15,15 @@ window.onload = function(){
         }
     }
     
-    var oneData = lineData[tricksToPlot[0]];
+    // maxData helps set the scaling for the plot.
+    for (var j = 0; j < diceMax; j++){
+        maxData[j] = {'x': j, 'y': 0};
+        for(var i = 0; i < tricksToPlot.length; i++){
+            if(lineData[tricksToPlot[i]][j].y > maxData[j].y){
+                maxData[j].y = lineData[tricksToPlot[i]][j].y;
+            }
+        }   
+    }
 
 
     var vis = d3.select('#successChart'),
@@ -27,16 +37,16 @@ window.onload = function(){
         },
         xRange = d3.scale.linear()
             .range([MARGINS.left, WIDTH - MARGINS.right])
-            .domain([d3.min(oneData, function(d) {
+            .domain([d3.min(maxData, function(d) {
                 return d.x;
-            }), d3.max(oneData, function(d) {
+            }), d3.max(maxData, function(d) {
             return d.x;
         })]),
         yRange = d3.scale.linear()
             .range([HEIGHT - MARGINS.top, MARGINS.bottom])
-            .domain([d3.min(oneData, function(d) {
+            .domain([d3.min(maxData, function(d) {
                 return d.y;
-            }), d3.max(oneData, function(d) {
+            }), d3.max(maxData, function(d) {
             return d.y;
         })]),
         xAxis = d3.svg.axis()
