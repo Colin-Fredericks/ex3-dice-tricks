@@ -22,22 +22,21 @@ window.onload = function(){
         lineData[tricksToPlot[i] + '_high'] = [];
         lineData[tricksToPlot[i] + '_low'] = [];
         
-        // Successes
+        
         for (var j = 0; j < diceMax; j++){
+            // Central line: Successes
             lineData[tricksToPlot[i]].push({});
             lineData[tricksToPlot[i]][j].x = j+1;
             lineData[tricksToPlot[i]][j].y = tricks[tricksToPlot[i]]['success_rate']*(j+1);
             lineData[tricksToPlot[i]][j].color = lineColors[i*3];
-        }
-        // High: Successes + standard deviation
-        for (var j = 0; j < diceMax; j++){
+
+            // High: Successes + standard deviation
             lineData[tricksToPlot[i] + '_high'].push({});
             lineData[tricksToPlot[i] + '_high'][j].x = j+1;
             lineData[tricksToPlot[i] + '_high'][j].y = lineData[tricksToPlot[i]][j].y + tricks[tricksToPlot[i]]['stdev']*Math.sqrt(j+1);
             lineData[tricksToPlot[i] + '_high'][j].color = lineColors[i*3+1];
-        }
-        // Low: Successes - standard deviation
-        for (var j = 0; j < diceMax; j++){
+
+            // Low: Successes - standard deviation
             lineData[tricksToPlot[i] + '_low'].push({});
             lineData[tricksToPlot[i] + '_low'][j].x = j+1;
             lineData[tricksToPlot[i] + '_low'][j].y = lineData[tricksToPlot[i]][j].y - tricks[tricksToPlot[i]]['stdev']*Math.sqrt(j+1);
