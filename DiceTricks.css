@@ -76,13 +76,11 @@ div {
 }
 
 #trickALabel {
-    border: 2px solid steelblue;
-    color: steelblue;
+    color: #339966;
 }
 
 #trickBLabel {
-    border: 2px solid darkorange;
-    color: darkorange;
+    color: #e68a00;
 }
 
 
@@ -92,4 +90,8 @@ div {
     color: #b80;
     font-variant: small-caps;    
     font-weight: bold;
+}
+
+.jqplot-table-legend:first-of-type {
+    margin-left: 80px;
 }

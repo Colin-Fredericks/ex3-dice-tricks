@@ -9,85 +9,77 @@ $(document).ready(function(){
         tricks[key].low = [];
         for(var i = 0; i < diceMax; i++){
             tricks[key].data[i] = tricks[key]['success_rate']*(i+1);
-            tricks[key].high[i] = tricks[key].data[i] + tricks[key]['stdev']*Math.sqrt(i+1);
-            tricks[key].low[i] = tricks[key].data[i] - tricks[key]['stdev']*Math.sqrt(i+1);
+            tricks[key].high[i] = tricks[key].data[i] + tricks[key]['stdev'] * Math.sqrt(i+1);
+            tricks[key].low[i] = tricks[key].data[i] - tricks[key]['stdev'] * Math.sqrt(i+1);
         }
     }
 
     var trickA = tricks[tricksToPlot[0]];
     var trickB = tricks[tricksToPlot[1]];
-     
-    var plot1 = $.jqplot("successChart", [trickA.data, trickA.high, trickA.low], {
-        title: 'Successes for ' + trickA.label + ' and ' + trickB.label +'.',
+    
+    var trickAOptions = {
+        title: '&nbsp;',
         axesDefaults: {
-            pad: 1.05
+            pad: 1.05,
+            tickInterval: 5
         },
-        //////
-        // Use the fillBetween option to control fill between two
-        // lines on a plot.
-        //////
+        axes: {
+            xaxis: { min: 0, max: 25 },
+            yaxis: { min: 0, max: 20 }
+        },
+        series:[
+            {showMarker: false, color: '#40bf80', shadow: false, label:'high'},
+            {showMarker: true, markerOptions: {style: 'filledSquare'}, color: '#339966', shadow: false, label:'avg'},
+            {showMarker: false, color: '#2d8659', shadow: false, label:'low'}
+        ],
         fillBetween: {
-            // series1: Required, if missing won't fill.
             series1: 0,
-            // series2: Required, if  missing won't fill.
             series2: 2,
-            // color: Optional, defaults to fillColor of series1.
-            color: "rgba(227, 167, 111, 1)",
-            // baseSeries:  Optional.  Put fill on a layer below this series
-            // index.  Defaults to 0 (first series).  If an index higher than 0 is
-            // used, fill will hide series below it.
-            baseSeries: 0,
-            // fill:  Optional, defaults to true.  False to turn off fill.  
+            color: 'rgba(51, 153, 102, 0.3)',
             fill: true
         },
-        seriesDefaults: {
-            rendererOptions: {
-                showMarker: false,
-                markerOptions: { style:'diamond' },
-                //////
-                // Turn on line smoothing.  By default, a constrained cubic spline
-                // interpolation algorithm is used which will not overshoot or
-                // undershoot any data points.
-                //////
-                smooth: true
-            }
+        legend: {
+            show: true,
+            location: 'nw'
         }
-    });
 
-    var plot2 = $.jqplot("successChart", [trickB.data, trickB.high, trickB.low], {
-        title: 'Successes for ' + trickA.label + ' and ' + trickB.label +'.',
+    };
+    
+    var trickBOptions = {
+        title: 'Successes for <span id="trickALabel">' 
+            + trickA.label 
+            + '</span> and <span id="trickBLabel">' 
+            + trickB.label
+            + '</span>',
         axesDefaults: {
-            pad: 1.05
+            pad: 1.05,
+            tickInterval: 5
         },
-        //////
-        // Use the fillBetween option to control fill between two
-        // lines on a plot.
-        //////
+        axes: {
+            xaxis: { min: 0, max: 25 },
+            yaxis: { min: 0, max: 20 }
+        },
+        series:[
+            {showMarker: false, color: '#ff9900', shadow: false, label:'high'},
+            {showMarker: true, markerOptions: {style: 'filledSquare'}, color: '#e68a00', shadow: false, label:'avg'},
+            {showMarker: false, color: '#cc7a00', shadow: false, label:'low'}
+        ],
         fillBetween: {
-            // series1: Required, if missing won't fill.
-            series1: 1,
-            // series2: Required, if  missing won't fill.
+            series1: 0,
             series2: 2,
-            // color: Optional, defaults to fillColor of series1.
-            color: "rgba(0, 167, 111, 0.3)",
-            // baseSeries:  Optional.  Put fill on a layer below this series
-            // index.  Defaults to 0 (first series).  If an index higher than 0 is
-            // used, fill will hide series below it.
-            baseSeries: 0,
-            // fill:  Optional, defaults to true.  False to turn off fill.  
+            color: 'rgba(255, 153, 0, 0.3)',
             fill: true
         },
-        seriesDefaults: {
-            rendererOptions: {
-                showMarker: false,
-                markerOptions: { style:'diamond' },
-                //////
-                // Turn on line smoothing.  By default, a constrained cubic spline
-                // interpolation algorithm is used which will not overshoot or
-                // undershoot any data points.
-                //////
-                smooth: true
-            }
+        grid: {
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            drawGridlines: false
+        },
+        legend: {
+            show: true,
+            location: 'nw'
         }
-    });
+    };
+     
+    var plot1 = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
+    var plot2 = $.jqplot('successChart', [trickB.high, trickB.data, trickB.low], trickBOptions);
 });
