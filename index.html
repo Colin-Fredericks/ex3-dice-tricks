@@ -8,6 +8,9 @@
     <script language="javascript" type="text/javascript" src="jqplot/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
     <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.min.css" />
+    <link rel="stylesheet" href="jqplot/jquery-ui.min.css">
+    <script src="jqplot/jquery-ui.min.js"></script>
+    <script src="jqplot/jquery.ui.touch-punch.min.js"></script>
 
     <script src="DiceTricks.js"></script>
     <script src="DiceTricksGrapher.js"></script>
@@ -20,13 +23,21 @@
 
 <div id="bigbox">
 <div id="leftbox">
+<!-- 
     <div id="tabs">
-        <div id="trickAtab">Trick A</div>
-        <div id="trickBtab">Trick B</div>
+        <button id="trickAtab">Trick A</button>
+        <button id="trickBtab">Trick B</button>
     </div>
+ -->
     <div id="options">
-        <div id="trickAoptions"></div>
-        <div id="trickBoptions"></div>
+        <div id="trickAoptions">
+            <h3>Trick A</h3>
+            <br>
+        </div>
+        <div id="trickBoptions">
+            <h3>Trick B</h3>
+            <br>
+        </div>
     </div>
 </div>
 <div id="theGraph">

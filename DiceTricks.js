@@ -60,9 +60,4 @@ var tricks = {
         'success_rate': 0.8,
         'stdev': 0.601
     }
-}
-
-var tricksToPlot = [
-    'double10',
-    'TN6'
-];
+};

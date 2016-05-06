@@ -3,6 +3,30 @@ $(document).ready(function(){
 
     var diceMax = 25;
 
+    var tricksToPlot = [
+        'double10',
+        'TN6'
+    ];
+    
+    // Set up selector and options for tricks A and B.
+    $('#trickAoptions').append('<select id="trickAselector"></select>');
+    $('#trickBoptions').append('<select id="trickBselector"></select>');
+    for(var key in tricks){
+        var optionItem = '<option value="' + key + '">' + tricks[key].label + '</option>';
+        $('#trickAselector').append(optionItem);
+        $('#trickBselector').append(optionItem);
+    }
+    
+    $('#trickAtab').button().on('click', function(){
+        $('#trickAoptions').show();
+        $('#trickBoptions').hide();
+    });
+    
+    $('#trickBtab').button().on('click', function(){
+        $('#trickAoptions').hide();
+        $('#trickBoptions').show();
+    });
+    
     for(key in tricks){
         tricks[key].data = [];
         tricks[key].high = [];
@@ -80,6 +104,36 @@ $(document).ready(function(){
         }
     };
      
-    var plot1 = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
-    var plot2 = $.jqplot('successChart', [trickB.high, trickB.data, trickB.low], trickBOptions);
+    var plotA = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
+    var plotB = $.jqplot('successChart', [trickB.high, trickB.data, trickB.low], trickBOptions);
+
+
+    $('#trickAselector').selectmenu({
+        select: function(event, ui) {
+            tricksToPlot[0] = this.value;
+            trickA = tricks[tricksToPlot[0]];
+            plotA.redraw();
+            plotB.redraw();
+            console.log(this.value);
+            console.log(trickA);
+        },
+        create: function(){
+            $('#trickAselector option[value='+tricksToPlot[0]+']').prop('selected', 'selected');
+        }
+    });
+    
+    $('#trickBselector').selectmenu({
+        select: function(event, ui) {
+            tricksToPlot[1] = this.value;
+            trickB = tricks[tricksToPlot[1]];
+            plotA.redraw();
+            plotB.redraw();
+            console.log(this.value);
+            console.log(trickB);
+        },
+        create: function(){
+            $('#trickBselector option[value='+tricksToPlot[1]+']').prop('selected', 'selected');
+        }
+    });
+    
 });
