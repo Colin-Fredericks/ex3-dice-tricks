@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Ex3 Dice Trick Comparisons</title>
-    <script src="d3.min.js"></script>
+
+    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="jqplot/excanvas.js"></script><![endif]-->
+    <script language="javascript" type="text/javascript" src="jqplot/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.css" />
+
     <script src="DiceTricks.js"></script>
     <script src="DiceTricksGrapher.js"></script>
 	<link rel="stylesheet" type="text/css" href="DiceTricks.css" />
@@ -29,7 +34,7 @@
         <span id="trickALabel">Trick A</span>
         <span id="trickBLabel">Trick B</span>
     </div>
-    <svg id="successChart" width="800" height="500"></svg>
+    <div id="successChart" style="height:500px;width:800px; "></div>
     <div id="controls"></div>
 </div>
 <br clear="all">
