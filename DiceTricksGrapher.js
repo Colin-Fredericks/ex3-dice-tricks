@@ -3,6 +3,8 @@ $(document).ready(function(){
 
     var diceMax = 25;
     var dataTable = $('#rawData tbody');
+    var extraSuccA = 0;
+    var extraSuccB = 0;
 
     // Create the data tables in each trick.
     for(key in tricks){
@@ -18,13 +20,10 @@ $(document).ready(function(){
     }
     
     // Make copies of the default tricks.
-    var trickA = $.extend(true, {}, tricks['1subtract']);
-    var trickB = $.extend(true, {}, tricks['double10']);
-
-    // Set up selector and options for tricks A and B.
-    $('#trickAoptions').append('<select id="trickAselector"></select>');
-    $('#trickBoptions').append('<select id="trickBselector"></select>');
+    var trickA = $.extend(true, {}, tricks['double10']);
+    var trickB = $.extend(true, {}, tricks['1subtract']);
     
+    // Set up selector and options for tricks A and B.
     for(var key in tricks){
         var optionItem = '<option value="' + key + '">' + tricks[key].label + '</option>';
         $('#trickAselector').append(optionItem);
@@ -107,8 +106,31 @@ $(document).ready(function(){
             + '</span> and <span id="trickBLabel">' 
             + trickB.label
             + '</span>';
-            
+        
+        // Get a clean copy of the data.
+        trickA = $.extend(true, {}, tricks[trickA.value]);
+        trickB = $.extend(true, {}, tricks[trickB.value]);
+        
+        // Update both tricks for extra successes if necessary.
+        var addForA = $(addSuccA).prop('checked');
+        if(addForA){
+            for(var i = 0; i < diceMax; i++){
+                trickA.data[i] += extraSuccA;
+                trickA.high[i] += extraSuccA;
+                trickA.low[i] += extraSuccA;
+            }
+        }
+        var addForB = $(addSuccB).prop('checked');
+        if(addForB){
+            for(var i = 0; i < diceMax; i++){
+                trickB.data[i] += extraSuccB;
+                trickB.high[i] += extraSuccB;
+                trickB.low[i] += extraSuccB;
+            }
+        }
+        
         // Man I sure do wish there was a nicer way.
+        // I'm pretty sure this is the primary source of slowdown in this code.
         plotA.destroy();
         plotB.destroy();
         plotA = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
@@ -126,13 +148,13 @@ $(document).ready(function(){
                 + (i+1)
                 + '</th><td>'
                 + Math.round(trickA.data[i] * 100) / 100
-                + ' ±'
+                + ' <span class="uncertainty">±'
                 + Math.round(trickA.stdev * Math.sqrt(i+1) * 100) / 100
-                + '</td><td>'
+                + '</span></td><td>'
                 + Math.floor(trickB.data[i] * 100) / 100
-                + ' ±'
+                + ' <span class="uncertainty">±'
                 + Math.round(trickB.stdev * Math.sqrt(i+1) * 100) / 100
-                + '</td></tr>');
+                + '</span></td></tr>');
         }
     }
     
@@ -166,4 +188,48 @@ $(document).ready(function(){
         }
     });
     
+    
+    // Add the stuff that lets us add successes to a trick.
+    function setSuccA(event, ui){
+        extraSuccA = ui.value;
+        $('#sliderAVal').text(extraSuccA);
+        redrawGraph();
+        updateTable();
+    }
+
+    function setSuccB(event, ui){
+        extraSuccB = ui.value;
+        $('#sliderBVal').text(extraSuccB);
+        redrawGraph();
+        updateTable();
+    }
+    
+    
+    $('#sliderA').slider({
+        orientation: "horizontal",
+        min: 0,
+        max: 5,
+        value: 0,
+        slide: setSuccA,
+        change: setSuccA
+    });
+
+    $('#sliderB').slider({
+        orientation: "horizontal",
+        min: 0,
+        max: 5,
+        value: 0,
+        slide: setSuccB,
+        change: setSuccB
+    });
+    
+    $('#addSuccA').change(function(){
+        redrawGraph();
+        updateTable();
+    });
+    
+    $('#addSuccB').change(function(){
+        redrawGraph();
+        updateTable();
+    });
 });

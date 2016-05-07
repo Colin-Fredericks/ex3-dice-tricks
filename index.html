@@ -26,9 +26,22 @@
     <div id="options">
         <div id="trickAoptions">
             <h3>Trick A</h3>
+            <select id="trickAselector"></select>
+            <br clear="all">
+            <input id="addSuccA" type="checkbox" name="addSuccA" value="yes">Add Successes?
+            <div class="sliderbox">
+                <div id="sliderA"></div> <div id="sliderAVal">0</div>
+            </div>
         </div>
+        <hr>
         <div id="trickBoptions">
             <h3>Trick B</h3>
+            <select id="trickBselector"></select>
+            <br clear="all">
+            <input id="addSuccB" type="checkbox" name="addSuccB" value="yes">Add Successes?
+            <div class="sliderbox">
+                <div id="sliderB"></div> <div id="sliderBVal">0</div>
+            </div>
         </div>
     </div>
 </div>
@@ -41,6 +54,7 @@
 
 <p>Ranges are given in Standard Deviations. Roughly 63% of all rolls will fall within the range shown.</p>
 
+<h2>Data Table</h2>
 <table id="rawData" class="keepbits">
     <tbody class="keepbits">
     <tr class="keepbits">

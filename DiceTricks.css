@@ -17,6 +17,7 @@ h1 {
 }
 
 h2 {
+    color: #b80;
     font-variant: small-caps;
     margin: 4px 0px 4px 0px;
     display: inline-block;
@@ -25,6 +26,11 @@ h2 {
 h3 {
     font-variant: small-caps;
     margin: 4px 0px 4px 0px;
+}
+
+hr {
+    border: 1px solid #650;
+    width: 80%;
 }
 
 p {
@@ -58,6 +64,15 @@ tr td:nth-of-type(1) {
     padding: 2px;
 }
 
+#theGraph {
+    border: 2px solid #b80;
+    background-color: rgb(250, 240, 190);
+}
+
+#successChart {
+    background-color: rgb(250, 240, 190);
+}
+
 #bigbox {
     position: relative;
     display: inline-block;
@@ -68,6 +83,7 @@ tr td:nth-of-type(1) {
 #leftbox {
     position: relative;
     float: left;
+    width: 180px;
 }
 
 #tabs {
@@ -79,6 +95,7 @@ tr td:nth-of-type(1) {
 }
 
 #trickAoptions, #trickBoptions {
+    padding: 3px;
 }
 
 #theGraph {
@@ -94,10 +111,6 @@ tr td:nth-of-type(1) {
 
 }
 
-#options div{
-    padding: 3px;
-}
-
 #trickALabel {
     color: #339966;
 }
@@ -106,6 +119,17 @@ tr td:nth-of-type(1) {
     color: #e68a00;
 }
 
+#sliderA, #sliderB{
+    width: 80%;
+}
+
+.sliderbox {
+    padding-left: 5px;
+}
+
+.sliderbox div {
+    display: inline-block;
+}
 
 .titletopper {
     margin: 0px;
@@ -113,6 +137,10 @@ tr td:nth-of-type(1) {
     color: #b80;
     font-variant: small-caps;    
     font-weight: bold;
+}
+
+.uncertainty {
+    color: #999;
 }
 
 .jqplot-table-legend:nth-of-type(2) {
@@ -126,9 +154,10 @@ tr td:nth-of-type(1) {
 .ui-selectmenu-button {
     float:left;
     margin: 4px 0px 0px 4px;
+    width: 150px !important;
 }
 
 .ui-selectmenu-text {
     padding: 4px 0px 4px 8px;
-    font-size: 12px;
+    font-size: 14px;
 }
