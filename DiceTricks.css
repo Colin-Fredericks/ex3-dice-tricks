@@ -16,20 +16,40 @@ h1 {
     margin: 0px 0px 8px 0px;
 }
 
-h2, h3 {
+h2 {
     font-variant: small-caps;
     margin: 4px 0px 4px 0px;
     display: inline-block;
+}
+
+h3 {
+    font-variant: small-caps;
+    margin: 4px 0px 4px 0px;
 }
 
 p {
     margin: 4px;
 }
 
-div {
-    border: 1px solid black;
-    margin: 2px;
-    padding: 2px;
+table {
+    border-collapse: collapse;
+}
+
+tr:first-of-type {
+    border-bottom: 1px solid black;
+}
+
+td {
+    padding: 2px 2px 2px 8px;
+}
+
+th {
+    padding: 2px 4px 2px 4px;
+}
+
+tr td:nth-of-type(1) {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
 }
 
 #successChart div {
@@ -41,6 +61,8 @@ div {
 #bigbox {
     position: relative;
     display: inline-block;
+    background-color: #da3;
+    padding: 5px;
 }
 
 #leftbox {
@@ -52,10 +74,6 @@ div {
     white-space: nowrap;
 }
 
-#trickAtab, #trickBtab {
-    display: inline-block;
-}
-
 #options {
 
 }
@@ -65,6 +83,7 @@ div {
 
 #theGraph {
     float: left;
+    background-color: white;
 }
 
 #successChart {
@@ -73,6 +92,10 @@ div {
 
 #controls {
 
+}
+
+#options div{
+    padding: 3px;
 }
 
 #trickALabel {
@@ -106,6 +129,6 @@ div {
 }
 
 .ui-selectmenu-text {
-    padding: 4px 20px 4px 8px;
-    font-size: 14px;
+    padding: 4px 0px 4px 8px;
+    font-size: 12px;
 }

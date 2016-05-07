@@ -2,32 +2,11 @@ $(document).ready(function(){
     console.log('working');
 
     var diceMax = 25;
+    var dataTable = $('#rawData tbody');
 
-    var tricksToPlot = [
-        'double10',
-        'TN6'
-    ];
-    
-    // Set up selector and options for tricks A and B.
-    $('#trickAoptions').append('<select id="trickAselector"></select>');
-    $('#trickBoptions').append('<select id="trickBselector"></select>');
-    for(var key in tricks){
-        var optionItem = '<option value="' + key + '">' + tricks[key].label + '</option>';
-        $('#trickAselector').append(optionItem);
-        $('#trickBselector').append(optionItem);
-    }
-    
-    $('#trickAtab').button().on('click', function(){
-        $('#trickAoptions').show();
-        $('#trickBoptions').hide();
-    });
-    
-    $('#trickBtab').button().on('click', function(){
-        $('#trickAoptions').hide();
-        $('#trickBoptions').show();
-    });
-    
+    // Create the data tables in each trick.
     for(key in tricks){
+        tricks[key].value = key;
         tricks[key].data = [];
         tricks[key].high = [];
         tricks[key].low = [];
@@ -37,10 +16,23 @@ $(document).ready(function(){
             tricks[key].low[i] = tricks[key].data[i] - tricks[key]['stdev'] * Math.sqrt(i+1);
         }
     }
-
-    var trickA = tricks[tricksToPlot[0]];
-    var trickB = tricks[tricksToPlot[1]];
     
+    // Make copies of the default tricks.
+    var trickA = $.extend(true, {}, tricks['1subtract']);
+    var trickB = $.extend(true, {}, tricks['double10']);
+
+    // Set up selector and options for tricks A and B.
+    $('#trickAoptions').append('<select id="trickAselector"></select>');
+    $('#trickBoptions').append('<select id="trickBselector"></select>');
+    
+    for(var key in tricks){
+        var optionItem = '<option value="' + key + '">' + tricks[key].label + '</option>';
+        $('#trickAselector').append(optionItem);
+        $('#trickBselector').append(optionItem);
+    }
+    
+    
+    // Set options for the default tricks and plot them.
     var trickAOptions = {
         title: '&nbsp;',
         axesDefaults: {
@@ -103,36 +95,74 @@ $(document).ready(function(){
             location: 'nw'
         }
     };
-     
+    
     var plotA = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
     var plotB = $.jqplot('successChart', [trickB.high, trickB.data, trickB.low], trickBOptions);
 
-
+    
+    // Because we can't just change the data, we need to redraw the graph.
+    function redrawGraph(){
+        trickBOptions.title = 'Successes for <span id="trickALabel">' 
+            + trickA.label 
+            + '</span> and <span id="trickBLabel">' 
+            + trickB.label
+            + '</span>';
+            
+        // Man I sure do wish there was a nicer way.
+        plotA.destroy();
+        plotB.destroy();
+        plotA = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
+        plotB = $.jqplot('successChart', [trickB.high, trickB.data, trickB.low], trickBOptions);
+    }
+        
+    // Just like with the graph, we need to update the table for new data.
+    function updateTable(){
+        $('table tr[class!="keepbits"]').remove();
+        $('#tableTrickA').text(trickA.label);
+        $('#tableTrickB').text(trickB.label);
+        for(var i = 0; i < diceMax; i++){
+            dataTable.append(
+                '<tr><th>'
+                + (i+1)
+                + '</th><td>'
+                + Math.round(trickA.data[i] * 100) / 100
+                + ' ±'
+                + Math.round(trickA.stdev * Math.sqrt(i+1) * 100) / 100
+                + '</td><td>'
+                + Math.floor(trickB.data[i] * 100) / 100
+                + ' ±'
+                + Math.round(trickB.stdev * Math.sqrt(i+1) * 100) / 100
+                + '</td></tr>');
+        }
+    }
+    
+    // Run an update right away when we open the page.
+    updateTable();
+    
+    // Set up the pull-down menus for the tricks.
     $('#trickAselector').selectmenu({
         select: function(event, ui) {
-            tricksToPlot[0] = this.value;
-            trickA = tricks[tricksToPlot[0]];
-            plotA.redraw();
-            plotB.redraw();
-            console.log(this.value);
-            console.log(trickA);
+            trickA = tricks[this.value];
+            redrawGraph();
+            updateTable();
         },
         create: function(){
-            $('#trickAselector option[value='+tricksToPlot[0]+']').prop('selected', 'selected');
+            // Make sure we have the default tricks selected when the page opens.
+            $('#trickAselector option[value='+trickA.value+']').prop('selected', 'selected');
+            $('#trickAselector').selectmenu('refresh');
         }
     });
     
     $('#trickBselector').selectmenu({
         select: function(event, ui) {
-            tricksToPlot[1] = this.value;
-            trickB = tricks[tricksToPlot[1]];
-            plotA.redraw();
-            plotB.redraw();
-            console.log(this.value);
-            console.log(trickB);
+            trickB = tricks[this.value];
+            redrawGraph();
+            updateTable();
         },
         create: function(){
-            $('#trickBselector option[value='+tricksToPlot[1]+']').prop('selected', 'selected');
+            // Make sure we have the default tricks selected when the page opens.
+            $('#trickBselector option[value='+trickB.value+']').prop('selected', 'selected');
+            $('#trickBselector').selectmenu('refresh');
         }
     });
     
