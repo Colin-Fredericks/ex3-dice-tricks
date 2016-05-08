@@ -129,8 +129,8 @@ $(document).ready(function(){
             }
         }
         
-        // Man I sure do wish there was a nicer way.
-        // I'm pretty sure this is the primary source of slowdown in this code.
+        // Sad fact: Destroying and recreating the graphs is twice as fast as the replot command.
+        // https://stackoverflow.com/questions/13660883/jqplot-auto-refresh-chart-with-dynamic-ajax-data/19471949#19471949
         plotA.destroy();
         plotB.destroy();
         plotA = $.jqplot('successChart', [trickA.high, trickA.data, trickA.low], trickAOptions);
