@@ -39,8 +39,8 @@ $(document).ready(function(){
             tickInterval: 5
         },
         axes: {
-            xaxis: { min: 0, max: 25 },
-            yaxis: { min: 0, max: 20 }
+            xaxis: { min: 0, max: 25, label: "Dice Pool" },
+            yaxis: { min: 0, max: 20, label: "Successes" }
         },
         series:[
             {showMarker: false, color: '#40bf80', shadow: false, label:'high'},
@@ -71,8 +71,8 @@ $(document).ready(function(){
             tickInterval: 5
         },
         axes: {
-            xaxis: { min: 0, max: 25 },
-            yaxis: { min: 0, max: 20 }
+            xaxis: { min: 0, max: 25, label: "Dice Pool" },
+            yaxis: { min: 0, max: 20, label: "Successes" }
         },
         series:[
             {showMarker: false, color: '#ff9900', shadow: false, label:'high'},
