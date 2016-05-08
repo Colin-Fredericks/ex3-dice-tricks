@@ -1,7 +1,7 @@
 // Successes and standard deviations for rolling a single die with particular tricks.
 var tricks = {
     'double10': {
-        'label': 'Double 10s',
+        'label': 'Double 10s (default)',
         'success_rate': 0.5,
         'stdev': 0.67
     },
@@ -21,7 +21,7 @@ var tricks = {
         'stdev': 0.98
     },
     'none': {
-        'label': 'none',
+        'label': 'Don\'t Double 10s',
         'success_rate': 0.4,
         'stdev': 0.49
     },
