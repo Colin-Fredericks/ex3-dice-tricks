@@ -28,7 +28,7 @@ var tricks = {
     'exploding10': {
         'label': 'Exploding 10s',
         'success_rate': 0.556,
-        'stdev': 0.847
+        'stdev': 0.848
     },
     '1subtract': {
         'label': '1s Subtract',
@@ -37,6 +37,11 @@ var tricks = {
     },
     'reroll6': {
         'label': 'Reroll 6s',
+        'success_rate': 0.55,
+        'stdev': 0.683
+    },
+    'reroll6forever': {
+        'label': 'Reroll 6s forever',
         'success_rate': 0.556,
         'stdev': 0.686
     },
