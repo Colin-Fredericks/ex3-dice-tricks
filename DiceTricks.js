@@ -50,6 +50,11 @@ var tricks = {
         'success_rate': 0.625,
         'stdev': 0.696
     },
+    'rerollNS': {
+        'label': 'Reroll non-successes once',
+        'success_rate': 0.8,
+        'stdev': 0.694
+    },
     'TN6': {
         'label': 'TN 6',
         'success_rate': 0.6,
