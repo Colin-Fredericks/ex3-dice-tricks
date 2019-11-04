@@ -1,80 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Ex3 Dice Trick Comparisons</title>
 
-    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="jqplot/excanvas.js"></script><![endif]-->
-    <script language="javascript" type="text/javascript" src="jqplot/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" src="jqplot/jquery.jqplot.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="jqplot/jquery.jqplot.min.css" />
-    <link rel="stylesheet" href="jqplot/jquery-ui.min.css">
+    <!--[if lt IE 9
+      ]><script
+        language="javascript"
+        type="text/javascript"
+        src="jqplot/excanvas.js"
+      ></script
+    ><![endif]-->
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="jqplot/jquery.min.js"
+    ></script>
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="jqplot/jquery.jqplot.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="jqplot/jquery.jqplot.min.css"
+    />
+    <link rel="stylesheet" href="jqplot/jquery-ui.min.css" />
     <script src="jqplot/jquery-ui.min.js"></script>
     <script src="jqplot/jquery.ui.touch-punch.min.js"></script>
 
     <script src="DiceTricks.js"></script>
     <script src="DiceTricksGrapher.js"></script>
-	<link rel="stylesheet" type="text/css" href="DiceTricks.css" />
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="DiceTricks.css" />
+  </head>
+  <body>
+    <p class="titletopper dontprint">Exalted 3rd Edition</p>
+    <h1 class="dontprint">Dice Trick Comparisons</h1>
 
-<p class="titletopper dontprint">Exalted 3rd Edition</p>
-<h1 class="dontprint">Dice Trick Comparisons</h1>
-
-<div id="bigbox">
-<div id="leftbox">
-    <div id="options">
-        <div id="trickAoptions">
+    <div id="bigbox">
+      <div id="leftbox">
+        <div id="options">
+          <div id="trickAoptions">
             <h3>Trick A</h3>
             <select id="trickAselector"></select>
-            <br clear="all">
-            <input id="addSuccA" type="checkbox" name="addSuccA" value="yes">Add Successes?
+            <br clear="all" />
+            <input
+              id="addSuccA"
+              type="checkbox"
+              name="addSuccA"
+              value="yes"
+            />Add Successes?
             <div class="sliderbox">
-                <div id="sliderA"></div> <div id="sliderAVal">0</div>
+              <div id="sliderA"></div>
+              <div id="sliderAVal">0</div>
             </div>
-        </div>
-        <hr>
-        <div id="trickBoptions">
+          </div>
+          <hr />
+          <div id="trickBoptions">
             <h3>Trick B</h3>
             <select id="trickBselector"></select>
-            <br clear="all">
-            <input id="addSuccB" type="checkbox" name="addSuccB" value="yes">Add Successes?
+            <br clear="all" />
+            <input
+              id="addSuccB"
+              type="checkbox"
+              name="addSuccB"
+              value="yes"
+            />Add Successes?
             <div class="sliderbox">
-                <div id="sliderB"></div> <div id="sliderBVal">0</div>
+              <div id="sliderB"></div>
+              <div id="sliderBVal">0</div>
             </div>
+          </div>
         </div>
+      </div>
+      <div id="theGraph">
+        <div id="successChart" style="height:500px;width:800px; "></div>
+        <div id="controls"></div>
+      </div>
+      <br clear="all" />
     </div>
-</div>
-<div id="theGraph">
-    <div id="successChart" style="height:500px;width:800px; "></div>
-    <div id="controls"></div>
-</div>
-<br clear="all">
-</div>
 
-<p>Ranges are given in <a href="http://www.mathsisfun.com/data/standard-deviation.html">Standard Deviations</a>. Roughly 68% of all rolls will fall within the range shown. (Because the distribution of dice rolls is not Gaussian, this is just an approximate range - it should be tighter on the low end and stretch out a little on the high end.)</p>
+    <p>
+      Ranges are given in
+      <a href="http://www.mathsisfun.com/data/standard-deviation.html"
+        >Standard Deviations</a
+      >. Roughly 68% of all rolls will fall within the range shown. (Because the
+      distribution of dice rolls is not Gaussian, this is just an approximate
+      range - it should be tighter on the low end and stretch out a little on
+      the high end.)
+    </p>
 
-<p>10s are doubled on every trick except for "Don't double 10s." For example, "Exploding 10s" is actually "Exploding 10s with double 10s. This is why "1s subtract" has the same average as "Don't double 10s" - because it's actually "1s subtract and double 10s," and those effects cancel out when it comes to the average.</p>
+    <p>
+      10s are doubled on every trick except for "Don't double 10s." For example,
+      "Exploding 10s" is actually "Exploding 10s with double 10s. This is why
+      "1s subtract" has the same average as "Don't double 10s" - because it's
+      actually "1s subtract and double 10s," and those effects cancel out when
+      it comes to the average.
+    </p>
 
-<h2>Data Table</h2>
-<table id="rawData" class="keepbits">
-    <tbody class="keepbits">
-    <tr class="keepbits">
-        <th>Dice</th><th id="tableTrickA"></th><th id="tableTrickB"></th>
-    </tr>
-    </tbody>
-</table>
+    <h2>Data Table</h2>
+    <table id="rawData" class="keepbits">
+      <tbody class="keepbits">
+        <tr class="keepbits">
+          <th>Dice</th>
+          <th id="tableTrickA"></th>
+          <th id="tableTrickB"></th>
+        </tr>
+      </tbody>
+    </table>
 
-<hr />
+    <hr />
 
-<div id="colinlinks">
-<p class="titletopper">Colin's Ex3 Interactives:</p>
-<p><a href="https://colin-fredericks.github.io/ex3-dice-roller/">Dice Roller</a></p>
-<p><a href="https://colin-fredericks.github.io/ex3-battle-groups/">Battle Group Generator</a></p>
-<p><a href="https://colin-fredericks.github.io/ex3-dice-tricks/">Dice Trick Comparison</a></p>
-<p><a href="https://colin-fredericks.github.io/ex3-400-lunars/">400 Lunars</a></p>
-<p><a href="https://strangercreations.wordpress.com">Stranger Creations - NPCs and settings</a></p>
-</div>
-
-</body>
+    <footer id="colinlinks">
+      <p class="titletopper">Colin's Ex3 Interactives:</p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-dice-roller/"
+          >Dice Roller</a
+        >
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-battle-groups/"
+          >Battle Group Generator</a
+        >
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-dice-tricks/"
+          >Dice Trick Comparison</a
+        >
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-400-lunars/"
+          >400 Lunars</a
+        >
+      </p>
+      <p>
+        <a href="https://strangercreations.wordpress.com"
+          >Stranger Creations - NPCs and settings</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>
