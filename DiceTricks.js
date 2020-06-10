@@ -30,7 +30,7 @@ var tricks = {
     success_rate: 0.556,
     stdev: 0.848,
   },
-  '1subtract': {
+  ones_subtract: {
     label: '1s Subtract',
     success_rate: 0.4,
     stdev: 0.734,

@@ -7,26 +7,26 @@ $(document).ready(function () {
   var extraSuccB = 0;
 
   // Create the data tables in each trick.
-  for (key in tricks) {
+  for (let key in tricks) {
     tricks[key].value = key;
     tricks[key].data = [];
     tricks[key].high = [];
     tricks[key].low = [];
-    for (var i = 0; i < diceMax; i++) {
-      tricks[key].data[i] = tricks[key]['success_rate'] * (i + 1);
+    for (let i = 0; i < diceMax; i++) {
+      tricks[key].data[i] = tricks[key].success_rate * (i + 1);
       tricks[key].high[i] =
-        tricks[key].data[i] + tricks[key]['stdev'] * Math.sqrt(i + 1);
+        tricks[key].data[i] + tricks[key].stdev * Math.sqrt(i + 1);
       tricks[key].low[i] =
-        tricks[key].data[i] - tricks[key]['stdev'] * Math.sqrt(i + 1);
+        tricks[key].data[i] - tricks[key].stdev * Math.sqrt(i + 1);
     }
   }
 
   // Make copies of the default tricks.
-  var trickA = $.extend(true, {}, tricks['double10']);
-  var trickB = $.extend(true, {}, tricks['1subtract']);
+  var trickA = $.extend(true, {}, tricks.double10);
+  var trickB = $.extend(true, {}, tricks.ones_subtract);
 
   // Set up selector and options for tricks A and B.
-  for (var key in tricks) {
+  for (let key in tricks) {
     var optionItem =
       '<option value="' + key + '">' + tricks[key].label + '</option>';
     $('#trickAselector').append(optionItem);
@@ -136,7 +136,7 @@ $(document).ready(function () {
     // Update both tricks for extra successes if necessary.
     var addForA = $(addSuccA).prop('checked');
     if (addForA) {
-      for (var i = 0; i < diceMax; i++) {
+      for (let i = 0; i < diceMax; i++) {
         trickA.data[i] += extraSuccA;
         trickA.high[i] += extraSuccA;
         trickA.low[i] += extraSuccA;
@@ -144,7 +144,7 @@ $(document).ready(function () {
     }
     var addForB = $(addSuccB).prop('checked');
     if (addForB) {
-      for (var i = 0; i < diceMax; i++) {
+      for (let i = 0; i < diceMax; i++) {
         trickB.data[i] += extraSuccB;
         trickB.high[i] += extraSuccB;
         trickB.low[i] += extraSuccB;
@@ -172,7 +172,7 @@ $(document).ready(function () {
     $('table tr[class!="keepbits"]').remove();
     $('#tableTrickA').text(trickA.label);
     $('#tableTrickB').text(trickB.label);
-    for (var i = 0; i < diceMax; i++) {
+    for (let i = 0; i < diceMax; i++) {
       dataTable.append(
         '<tr><th>' +
           (i + 1) +
