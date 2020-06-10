@@ -1,180 +1,178 @@
-@media print
-{    
-    .no-print, .no-print *
-    {
-        display: none !important;
-    }
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
 }
 
 body {
-    font-family: Verdana, sans-serif;
+  font-family: Verdana, sans-serif;
 }
 
 h1 {
-    color: #b80;
-    font-variant: small-caps;
-    margin: 0px 0px 8px 0px;
+  color: #b80;
+  font-variant: small-caps;
+  margin: 0px 0px 8px 0px;
 }
 
 h2 {
-    color: #b80;
-    font-variant: small-caps;
-    margin: 4px 0px 4px 0px;
-    display: inline-block;
+  color: #b80;
+  font-variant: small-caps;
+  margin: 4px 0px 4px 0px;
+  display: inline-block;
 }
 
 h3 {
-    font-variant: small-caps;
-    margin: 4px 0px 4px 0px;
+  font-variant: small-caps;
+  margin: 4px 0px 4px 0px;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 tr:first-of-type {
-    border-bottom: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 td {
-    padding: 2px 2px 2px 8px;
+  padding: 2px 2px 2px 8px;
 }
 
 th {
-    padding: 2px 4px 2px 4px;
+  padding: 2px 4px 2px 4px;
 }
 
 tr td:nth-of-type(1) {
-    border-right: 1px solid black;
-    border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
 }
 
 #successChart div {
-    border: none;
-    margin: 2px;
-    padding: 2px;
+  border: none;
+  margin: 2px;
+  padding: 2px;
 }
 
 #theGraph {
-    border: 2px solid #b80;
-    background-color: rgb(250, 240, 190);
+  border: 2px solid #b80;
+  background-color: rgb(250, 240, 190);
 }
 
 #successChart {
-    background-color: rgb(250, 240, 190);
+  background-color: rgb(250, 240, 190);
 }
 
 #bigbox {
-    position: relative;
-    display: inline-block;
-    background-color: #da3;
-    padding: 5px;
+  position: relative;
+  display: inline-block;
+  background-color: #da3;
+  padding: 5px;
 }
 
 #leftbox {
-    position: relative;
-    float: left;
-    width: 180px;
+  position: relative;
+  float: left;
+  width: 180px;
 }
 
 #tabs {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 #options {
-
 }
 
-#trickAoptions, #trickBoptions {
-    padding: 3px;
+#trickAoptions,
+#trickBoptions {
+  padding: 3px;
 }
 
 #theGraph {
-    float: left;
-    background-color: white;
+  float: left;
+  background-color: white;
 }
 
 #successChart {
-
 }
 
 #controls {
-
 }
 
 #trickALabel {
-    color: #339966;
+  color: #339966;
 }
 
 #trickBLabel {
-    color: #e68a00;
+  color: #e68a00;
 }
 
-#sliderA, #sliderB{
-    width: 80%;
+#sliderA,
+#sliderB {
+  width: 80%;
 }
 
 .sliderbox {
-    padding-left: 5px;
+  padding-left: 5px;
 }
 
 .sliderbox div {
-    display: inline-block;
+  display: inline-block;
 }
 
 .titletopper {
-    margin: 0px;
-    padding: 0px;
-    color: #b80;
-    font-variant: small-caps;    
-    font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+  color: #b80;
+  font-variant: small-caps;
+  font-weight: bold;
 }
 
 .uncertainty {
-    color: #999;
+  color: #999;
 }
 
 .jqplot-table-legend:nth-of-type(2) {
-    margin-left: 70px;
+  margin-left: 70px;
 }
 
 .ui-button-text {
-    padding: 4px 8px 4px 8px !important;
+  padding: 4px 8px 4px 8px !important;
 }
 
 .ui-selectmenu-button {
-    float:left;
-    margin: 4px 0px 0px 4px;
-    width: 150px !important;
+  float: left;
+  margin: 4px 0px 0px 4px;
+  width: 150px !important;
 }
 
 .ui-selectmenu-text {
-    padding: 4px 0px 4px 8px;
-    font-size: 14px;
+  padding: 4px 0px 4px 8px;
+  font-size: 14px;
 }
 
 .jqplot-yaxis-label {
-    transform: rotate(270deg);
-    width: 15px !important;
+  transform: rotate(270deg);
+  width: 15px !important;
 }
 
 .jqplot-yaxis {
-    width: 40px !important;
+  width: 40px !important;
 }
 
 .jqplot-xaxis-label {
-    height: 15px !important;
+  height: 15px !important;
 }
 
 .jqplot-xaxis {
-    height: 30px !important;
+  height: 30px !important;
 }
 
 #colinlinks {
-    padding: 6px;
+  padding: 6px;
 }
 
 #colinlinks p {
-    margin: 0px;
-    font-size: small;
+  margin: 0px;
+  font-size: small;
 }

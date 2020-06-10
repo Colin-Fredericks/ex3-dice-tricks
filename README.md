@@ -1,4 +1,5 @@
 # ex3-dice-tricks
+
 This plots the successes and standard deviation for various common dice tricks in Exalted 3rd Edition.
 
 See this in action at https://colin-fredericks.github.io/ex3-dice-tricks/
